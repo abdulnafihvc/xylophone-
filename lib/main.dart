@@ -5,8 +5,28 @@ void main() {
   runApp(XylophoneApp());
 }
 
-class XylophoneApp extends StatefulWidget {
+void playSound(int SoundNumber) {
+  final player = AudioPlayer();
+  player.play(AssetSource('note$SoundNumber.wav'));
+}
 
+Expanded BuildWidget(backgroundcolor, SoundNumber) {
+  return Expanded(
+    child: TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: backgroundcolor,
+        shape: RoundedRectangleBorder(),
+      ),
+
+      onPressed: () {
+        playSound(SoundNumber);
+      },
+      child: Text(''),
+    ),
+  );
+}
+
+class XylophoneApp extends StatefulWidget {
   const XylophoneApp({super.key});
 
   @override
@@ -14,11 +34,10 @@ class XylophoneApp extends StatefulWidget {
 }
 
 class _XylophoneAppState extends State<XylophoneApp> {
-  final player = AudioPlayer();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowMaterialGrid: false,
       home: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
@@ -26,93 +45,22 @@ class _XylophoneAppState extends State<XylophoneApp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      shape: RoundedRectangleBorder(),
-                    ),
+                BuildWidget(const Color(0xFF03071e), 1),
+                BuildWidget(const Color(0xFF370617), 2),
+                BuildWidget(const Color(0xFF6a040f), 3),
+                BuildWidget(const Color(0xFF9d0208), 4),
+                BuildWidget(const Color(0xFFd00000), 5),
+                BuildWidget(const Color(0xFFdc2f02), 6),
+                BuildWidget(const Color(0xFFe85d04), 7),
 
-                    onPressed: () {
-                       player.play(AssetSource('note1.wav'));
-                    },
 
-                    child: Text(''),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                      shape: RoundedRectangleBorder(),
-                    ),
 
-                    onPressed: () {
-                      player.play(AssetSource('note2.wav'));
-                    },
-                    child: Text(''),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: () {
-                      player.play(AssetSource('note3.wav'));
-                    },
-                    child: Text(''),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: () {
-                      player.play(AssetSource('note4.wav'));
-                    },
-                    child: Text(''),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: () {
-                      player.play(AssetSource('note5.wav'));
-                    },
-                    child: Text(''),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: () {
-                      player.play(AssetSource('note6.wav'));
-                    },
-                    child: Text(''),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: () {
-                      player.play(AssetSource('note7.wav'));
-                    },
-                    child: Text(''),
-                  ),
-                ),
+
+
+                
+
+
+                
               ],
             ),
           ),
